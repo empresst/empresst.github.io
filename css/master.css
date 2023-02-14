@@ -157,7 +157,7 @@ footer {
 }
 
 .fixed-bg {
-    background-image: url("desk.jpg");
+    background-image: url("images/desk.jpg");
     opacity: 75%;
     min-height: 300px;
     background-attachment: fixed;
