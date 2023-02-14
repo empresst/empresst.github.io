@@ -2,7 +2,7 @@
 
 /* Text inside these asterisks and slashes are comments for human */
 
-  a {
+/*   a {
   color: blue; /* set the text color to blue here */
     text-decoration: none; /* This means we do not want hyperlinks to be underlined */
   }
@@ -60,4 +60,232 @@
     display: table;
     margin: 0 auto;
     text-align: left;
-  }
+  } */
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400, 500, 700');
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: #222;
+}
+
+.navbar {
+    padding: 0.8rem;
+}
+
+.navbar-nav li {
+    padding-right: 20px;
+}
+
+.navlink {
+    font-size: 1.1em !important;
+}
+
+.navbar-brand {
+    font-size: 200%;
+    text-shadow: 1px 1px 0.5px #000000;
+}
+
+.footlinks a {
+    color: #d5d5d5;
+    padding: 1.5rem;
+}
+
+.footlinks a:hover {
+    color: #25CCF7;
+}
+
+.footbar {
+    width: 80%;
+    margin: auto;
+}
+
+.social a {
+    font-size: 2.5em;
+    padding: 3rem;
+    text-shadow: 1px 1px 1px #000000;
+}
+
+.fa-facebook-square {
+    color: #3b5998;
+}
+
+.fa-twitter {
+    color: #00aced;
+}
+
+.fa-linkedin {
+    color: #0e76a8;
+}
+
+.fa-github {
+    color: #211F1F;
+}
+
+.fa-quora {
+    color: #b92b27;
+}
+
+.fa-facebook-square:hover,
+.fa-twitter:hover,
+.fa-linkedin:hover,
+.fa-github:hover,
+.fa-quora:hover {
+    color: #d5d5d5
+}
+
+hr.light {
+    border-top: 0.5px solid #576574;
+}
+
+footer {
+    background-color: #205E61;
+    color: #d5d5d5;
+    padding-top: 1.25rem;
+}
+
+.myinfo {
+    padding: 3rem;
+}
+
+.myinfo img {
+    box-shadow: 1px 1px 2px #000000;
+    width: 100%;
+    margin-top: auto;
+}
+
+.fixed-bg {
+    background-image: url("desk.jpg");
+    opacity: 75%;
+    min-height: 300px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.embed-responsive-item {
+    padding: 3rem;
+}
+
+.blogsection .btn {
+    font-size: 1em;
+}
+
+.blogsection {
+    padding: 1rem;
+}
+
+.imborder {
+    border: 3px solid #ddd;
+}
+
+@media(max-width: 992px) {
+    .social a {
+        font-size: 2.5em;
+        padding: 2.5rem;
+        text-shadow: 1px 1px 1px #000000;
+    }
+    .navbar-brand {
+        font-size: 200%;
+    }
+    .footlinks a,
+    p {
+        font-size: 1em;
+    }
+    .jumbotron {
+        margin: 2rem;
+    }
+    .myinfo img {
+        padding: 2rem;
+    }
+    .myinfo h4 {
+        font-size: 1.5em;
+    }
+    .blogsection h4 {
+        font-size: 1.5em;
+    }
+    .lead {
+        font-size: 1.5em;
+    }
+    .fixed-bg {
+        min-height: 300px;
+    }
+    .embed-responsive-item {
+        padding: 3rem;
+    }
+}
+
+@media(max-width: 768px) {
+    .social a {
+        font-size: 1.75em;
+        padding: 1.75rem;
+        text-shadow: 1px 1px 1px #000000;
+    }
+    .navbar-brand {
+        font-size: 175%;
+    }
+    .footlinks a,
+    p {
+        font-size: 0.75em;
+    }
+    .jumbotron {
+        margin: 1.5rem;
+    }
+    .myinfo img {
+        padding: 1.5rem;
+    }
+    .myinfo h4 {
+        font-size: 1.25em;
+    }
+    .blogsection h4 {
+        font-size: 1.25em;
+    }
+    .lead {
+        font-size: 1.25em;
+    }
+    .fixed-bg {
+        min-height: 180px;
+    }
+    .embed-responsive-item {
+        padding: 2rem;
+    }
+}
+
+@media(max-width: 576px) {
+    .social a {
+        font-size: 1em;
+        padding: 0.5rem;
+        text-shadow: 1px 1px 1px #000000;
+    }
+    .navbar-brand {
+        font-size: 150%;
+    }
+    .footlinks a,
+    p {
+        font-size: 0.5em;
+    }
+    .jumbotron {
+        margin: 1rem;
+    }
+    .myinfo img {
+        padding: 1rem;
+    }
+    .myinfo h4 {
+        font-size: 1em;
+    }
+    .blogsection h4 {
+        font-size: 1em;
+    }
+    .lead {
+        font-size: 1em;
+    }
+    .fixed-bg {
+        min-height: 120px;
+    }
+    .embed-responsive-item {
+        padding: 1rem;
+    }
+}
