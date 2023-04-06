@@ -16,7 +16,7 @@
     background-color: beige;  /* set the background color here */
     color: black;/* set the text color to black here */
     font-family:Arial,Helvetica,sans-serif;/* set the font here */
-  text-align: center; /* set the text alignment here */
+  text-align: left; /* set the text alignment here */
    }
 
   footer {
