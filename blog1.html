@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+    <title>Fatema Ferdous Tamanna</title>
+</head>
+
+<body>
+    <!--Navigation-->
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid padding">
+            <a class="navbar-brand" href="index.html"> Fatema Ferdous Tamanna </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="portfolio.html">Portfolio </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="resume.html">Resume </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="blog.html">Blog </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!----Content---->
+    <div class="container-fluid padding blogsection">
+        <div class="jumbotron">
+            <h4 class="display-5">Modular Arithmatic</h4>
+            <p>Some competitive programming techniques related to Modular Arithmatic.</p>
+            <hr class="my-4">
+            <p>
+                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1">
+                    Read All
+                </a>
+            </p>
+            <div class="collapse" id="collapseExample1">
+                <div class="card card-body">
+                    <p>
+First off, some important identities about the modulo operator:<br>
+
+(a mod m)+(b mod m)  mod m=a+b  mod m <br>
+(a mod m)−(b mod m)  mod m=a−b  mod m <br>
+(a mod m)⋅(b mod m)  mod m=a⋅b  mod m <br>
+These identities have the very important consequence in that you generally don't need to ever store the "true" values of the large numbers you're working with, only their residues <b> mod  <i>m</i> </b> 
+. You can then add, subtract, and multiply with them as much as you need for your problem, taking the modulo as often as needed to avoid integer overflow. You may even decide to wrap them into their own object class with overloaded operators if your language supports them, though you may have to be careful of any object allocation overhead. If you use Kotlin like I do, consider using the <u>inline class</u> feature.
+<br><br>
+But what about division and fractions? That's slightly more complicated, and requires a concept called the "modular multiplicative inverse". The modular multiplicative inverse of a number a
+ is the number a<sup>−1</sup>
+ such that a⋅a<sup>−1</sup>  mod m=1
+. You may notice that this is similar to the concept of a reciprocal, but here we don't want a fraction; we want an integer, specifically an integer between 0
+ and m−1
+ inclusive. <br><br>
+
+But how do you actually find such a number? Bruteforcing all numbers to a prime number close to a billion will usually cause you to exceed the time limit. There are two faster ways to calculate the inverse: the extended GCD algorithm, and Fermat's little theorem. Though the extended GCD algorithm is more versatile and sometimes slightly faster, the Fermat's little theorem method is more popular, simply because it's almost "free" once you implement exponentiation, which is also often a useful operation in itself, so that's what we'll cover here.<br><br>
+
+Fermat's little theorem says that as long as the modulus m
+ is a prime number (10<sup>9</sup>+7
+ is prime, and so is 998 244 353
+, another common modulus in these problems), then a<sup>m </sup> m=a mod m
+. Working backwards, a<sup>m−1</sup> mod m=1=a⋅a<sup>m−2</sup>  mod m
+, therefore the number we need is a<sup>m−2</sup> mod m <br><br>
+.
+
+Note that this only works for a mod m≠0
+, because there is no number x
+ such that 0⋅x  mod m=1
+. In other words, you still can't divide by 0
+, sorry.<br>
+
+Multiplying m−2
+ times would still take too long; therefore a trick known as exponentiation by squaring is needed. It's based on the observation that for positive integer n
+, that if n
+ is odd, x<sup>n</sup>=x(x<sup>2</sup>)<sup><sup>n-1</sup>&frasl;<sub>2</sub></sup>
+, while if n
+ is even, x<sup>n</sup>=(x<sup>2</sup>)<sup><sup>n</sup>&frasl;<sub>2</sub> </sup>
+. It can be implemented recursively by the following pseudocode:
+
+
+.
+                    </p>
+
+                    <div class="row padding text-center">
+                        <div class="col-12">
+                            <img src="mod.png" width="30%" class="rounded">
+                        </div>
+
+                    </div>
+                    <p>Now that you know how to compute the modular multiplicative inverse (to refresh, a<sup>−1</sup>=a<sup>m−2</sup> mod m
+ when m
+ is prime), you can now define the division operator:<br>
+
+<b>a/b  mod m=a⋅b<sup>−1</sup>  mod m</b> <br>
+This also extends the  mod 
+ operator to rational numbers (i.e. fractions), as long as the denominator is coprime to m
+. (Thus the reason for choosing a fairly large prime; that way puzzle writers can avoid denominators with m
+ as a factor). The four basic operations, as well as exponentiation, will still work on them as usual. Again, you generally never need to store the fractions as their "true" values, only their residues modulo <i>m</i><br><br>
+.
+
+Congratulations! You have now mastered <sup>Z</sup>&frasl;<sub>pZ</sub>
+ field arithmetic! A "field" is just a fancy term from abstract algebra theory for a set with the four basic operators (addition, subtraction, multiplication, division) defined in a way that works just like you've learned in high-school for the rational and real numbers (however division by zero is still undefined), and <sup>Z</sup>&frasl;<sub>pZ</sub>
+ is just a fancy term meaning the set of integers from 0
+ to p−1
+ treated as residues modulo <i>p</i><br><br>
+.
+
+This also means that algebra works much like the way you learned in high school. How to solve (3=4x+5  mod 10<sup>9</sup>+7
+)? Simply pretend that x
+ is a real number and get (x=−1/2  mod 10<sup>9</sup>+7=500000003)
+. (Technically, all x
+ whose residue is 500000003
+, including rationals, will satisfy the equation.)
+<br><br>
+You can also now take advantage of combinatoric identities, like (nk)= <sup>n!</sup>&frasl;<sub>k!(n−k)!</sub>
+. The factorials can be too big to store in their true form, but you can store their modular residues instead, then use modular multiplicative inverse to do the "division".
+<br>
+There are only a few things you need to be careful of, like:
+<br>
+<li>divisions through modular multiplicative inverse would be slower than the other operations (O(logm)
+ instead of O(1)
+), so you may want to cache/memoize the inverses you use frequently in your program.
+
+<li>comparisons (once you represent a number by its modulo residue, comparisons are generally meaningless, as your 1
+ might "really" be m+1
+, 10<sup>100</sup>m+1
+, −5m+1
+, or even <sup>1</sup>&frasl;<sub>m+1</sub>
+)
+
+<li>exponentiation (when evaluating x<sup>n</sup> mod m
+, you can't store n
+ as n mod m
+. If n
+ turns out to be really huge, you need to calculate it modulo φ(m)
+ instead, where φ
+ stands for Euler's totient function. If m
+ is prime, φ(m)=m−1
+. Note that this new modulus will then usually not be prime, thus "division" in it will not be reliable (you can still use the extended GCD algorithm, but only for numbers coprime to the new modulus), but you can still use the other three operators. In abstract algebra theory,<sup>Z</sup>&frasl;<sub>nZ</sub>
+ is a "ring" rather than a "field" when n
+ isn't prime due to this loss). Do be careful about the special case 0<sup>0</sup>
+, which should typically be defined as 1, while 0φ(m)
+ would still be 0</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron">
+            <h4 class="display-5">Permutation</h4>
+            <p>Some competitive programming techniques related to Permutation.</p>
+            <hr class="my-4">
+            <p>
+                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
+                    Read All
+                </a>
+            </p>
+            <div class="collapse" id="collapseExample2">
+                <div class="card card-body">
+                    <p>
+                        <b>Longest increasing subsequences and Erdos Szekeres theorem</b><br><br>
+An increasing subsequence of an array a
+ (not necessarily a permutation) is a sequence of indices i1< i2<⋯< ik
+ such that ai1< ai2<⋯< aik
+. Decreasing subsequences are defined similarly.<br>
+
+An algorithm to find a longest increasing (or, with a few modifications, non-decreasing) subsequence of an array can be found in this nice video tutorial. But that is not what we are concerned with at the moment.<br>
+
+We are concerned with bounds on the length of any longest increasing subsequence (LIS from here on). However, for decreasing subsequences, an LIS has length 1
+. The Erdos Szekeres theorem tells us that in such cases, the length of the longest decreasing subsequence will be large.<br>
+
+More formally, the theorem states that in any permutation (or array with distinct elements) of size at least xy+1
+, there is either an increasing subsequence of length x+1
+ or a decreasing subsequence of length y+1.<br>
+
+
+The easiest way to prove this theorem is via an application of the Pigeonhole principle.<br><br>
+
+Suppose for the sake of contradiction that the theorem is false for some permutation a
+. For every i
+, consider the length of a longest increasing subsequence ending at index i
+ and the length of a longest decreasing subsequence ending at index i
+. Let's call these numbers xi
+ and yi
+. Note that all xi
+-s are integers between 1
+ and x
+, and all yi
+-s are integers between 1
+ and y
+. So there can be at most xy
+ distinct pairs (xi,yi)
+. By the Pigeonhole principle, there are i< j
+ such that (xi,yi)=(xj,yj)
+. Since all elements are distinct, ai < aj
+ or ai>aj
+. In the first case, it is impossible that xi=xj
+, and in the latter, it is impossible that yi=yj
+. This is a contradiction, and we are done.<br>
+
+A more sophisticated and deeper proof of this theorem can be done using Dilworth's theorem. This blog uses it to prove a special case of this theorem, though the proof can be modified easily to work for the complete proof too.
+<br><br><b>
+Next permutation</b> <br>
+Note that permutations are just sequences of integers, so it is possible to sort the set of all possible sequences of size n
+ lexicographically (i.e., in the order you would find words in a dictionary). This defines a natural indexing of each permutation. How do we find the next permutation from a given permutation?<br>
+
+The easiest way (in C++) is to use <u>std::next_permutation</u>, but we'll briefly describe how it works.<br>
+
+Let's find the first index i
+ from the right so that ai>ai−1
+. Since i
+ was the first index satisfying this condition, all indices i
+ to n
+ must form a decreasing sequence. Note that the smallest number in this sequence that is larger than ai
+ will be the new element at position i
+, and the rest of them (along with the current ai
+) will be sorted in increasing order after it. All of this can be implemented in time O(n−i+1)<br><br>
+.
+
+Note that starting from the lexicographically smallest permutation (which is [1,2,…,n]
+), the number of permutations between (both inclusive) this permutation and a permutation whose first position i
+ such that ai≠i
+ is k
+, is at least (n−k)!+1
+. This means that if you apply next_permutation even a large number of times, the number of elements in the permutation that will ever change will not be large (unless you start from a specific permutation, and even in that case, apart from a single change for potentially all indices, the same conclusion holds).
+<br>
+So if for a permutation of length n
+, you do the next_permutation operation (as implemented above) O(nk)
+ times, the time taken will be (much faster than) O(kn<sup>k</sup>logn)
+. You can even bound the number of operations to perform next_permutation r
+ times by O(r+n)
+. The analysis is similar to the complexity analysis when you increment the binary representation of an n
+-bit number r
+ times.<br>
+ follow this link for more : <a href= "https://codeforces.com/blog/entry/111187">Blog</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron">
+            <h4 class="display-5">Segment Tree</h4>
+            <p>Some competitive programming techniques related to Segment Tree.</p>
+            <hr class="my-4">
+            <p>
+                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample3">
+                    Read full post
+                </a>
+            </p>
+            <div class="collapse" id="collapseExample3">
+                <div class="card card-body">
+                    <div class="row padding text-center">
+                        <div class="col-12">
+                            <img src="segmentree.png" width="40%" class="rounded">
+                        </div>
+
+                    </div>
+                    <p>That's it! Fully operational example. Forget about those cumbersome recursive functions with 5 arguments!<br>
+
+Now let's see why this works, and works very efficient.<br>
+<ol>
+
+<li>As you could notice from the picture, leaves are stored in continuous nodes with indices starting with n, element with index i corresponds to a node with index i+n. So we can read initial values directly into the tree where they belong.
+
+<li>Before doing any queries we need to build the tree, which is quite straightforward and takes O(n) time. Since parent always has index less than its children, we just process all the internal nodes in decreasing order. In case you're confused by bit operations, the code in build() is equivalent to t[i] = t[2*i] + t[2*i+1].
+
+<li>Modifying an element is also quite straightforward and takes time proportional to the height of the tree, which is O(log(n)). We only need to update values in the parents of given node. So we just go up the tree knowing that parent of node p is p/2 or p>>1, which means the same. p^1 turns 2*i into 2*i+1 and vice versa, so it represents the second child of p's parent.
+
+<li>Finding the sum also works in O(log(n)) time. To better understand it's logic you can go through example with interval [3,11) and verify that result is composed exactly of values in nodes 19, 26, 12 and 5 (in that order).
+
+<li>General idea is the following. If l, the left interval border, is odd (which is equivalent to l&1) then l is the right child of its parent. Then our interval includes node l but doesn't include it's parent. So we add t[l] and move to the right of l's parent by setting l=(l+1)/2. If l is even, it is the left child, and the interval includes its parent as well (unless the right border interferes), so we just move to it by setting l=l/2. Similar argumentation is applied to the right border. We stop once borders meet.
+
+No recursion and no additional computations like finding the middle of the interval are involved, we just go through all the nodes we need, so this is very efficient.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <figure>
+        <div class="fixed-bg"></div>
+    </figure>
+    <!----Footer---->
+    <footer>
+        <div class="container-fluid padding">
+            <div class="row text-center footbar">
+                <div class="col-12">
+                    <div class="social padding">
+                        <a href="https://www.facebook.com/alifbiswas30"><i class="fa fa-facebook-square"></i></a>
+                        <a href="https:/www.linkedin.com/in/alifbiswas30/"><i class="fa fa-linkedin"></i></a>
+                        <a href="https://github.com/spectro30"><i class="fa fa-github"></i></a>
+                        <a href="https://www.quora.com/profile/Alif-Biswas-1"><i class="fa fa-quora"></i></a>
+                        <a href="https://twitter.com/biswas_alif"><i class="fa fa-twitter"></i></a>
+
+                    </div>
+                </div>
+                <div class="col-12">
+                    <hr class="light">
+                </div>
+                <div class="row text-center footlinks col-12">
+                    <div class="col-3">
+                        <a class="nav-link" href="index.html">Home </a>
+                    </div>
+                    <div class="col-3">
+                        <a class="nav-link" href="portfolio.html">Portfolio</a>
+                    </div>
+                    <div class="col-3">
+                        <a class="nav-link" href="resume.html">Resume</a>
+                    </div>
+                    <div class="col-3">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </div>
+                </div>
+                <div class="col-12 text-center">
+                    <p>&copy 2020 Fatema Ferdous Tamanna | All rights Reserved</p>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>
