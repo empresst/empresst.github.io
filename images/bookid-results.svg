@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" font-family="Helvetica, Arial, sans-serif" font-size="13">
+  <rect width="760" height="330" fill="#ffffff"/>
+  <text x="20" y="26" font-size="15" font-weight="bold" fill="#222">Leave-one-out accuracy on PHY_IDs with ≥2 images (58 images)</text>
+  <text x="20" y="46" font-size="11" fill="#666">Each image is predicted from the other 104. Singletons (47 images) can never be matched, so all-image accuracy is capped at 55.2%.</text>
+  <g fill="#333" text-anchor="end">
+    <text x="250" y="83">v2 · ResNet-50, full page</text>
+    <text x="250" y="121">Hybrid · header + EasyOCR (en+bn)</text>
+    <text x="250" y="159">v4 · weighted fusion + ORB</text>
+    <text x="250" y="197">v5 · small-data-safe</text>
+    <text x="250" y="235">v3 · letterhead crop + EasyOCR</text>
+    <text x="250" y="273" font-weight="bold">Header + PaddleOCR</text>
+  </g>
+  <line x1="260" y1="60" x2="260" y2="290" stroke="#999"/>
+  <!-- scale: 100% = 400px -->
+  <g fill="#9fb0d6">
+    <rect x="260" y="68" width="186" height="22"/>
+    <rect x="260" y="106" width="304" height="22"/>
+    <rect x="260" y="144" width="338" height="22"/>
+    <rect x="260" y="182" width="338" height="22"/>
+    <rect x="260" y="220" width="352" height="22"/>
+  </g>
+  <rect x="260" y="258" width="372" height="22" fill="#3d5ba9"/>
+  <g fill="#222">
+    <text x="452" y="84">46.6%  (27/58)</text>
+    <text x="570" y="122">75.9%  (44/58)</text>
+    <text x="604" y="160">84.5%  (49/58)</text>
+    <text x="604" y="198">84.5%  (49/58)</text>
+    <text x="618" y="236">87.9%  (51/58)</text>
+    <text x="638" y="274" font-weight="bold">93.1%  (54/58)</text>
+  </g>
+  <text x="20" y="315" font-size="11" fill="#666">Scored from each version's saved prediction file against the ground-truth labels.</text>
+</svg>

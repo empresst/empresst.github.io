@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 560" font-family="Helvetica, Arial, sans-serif">
+  <rect width="520" height="560" fill="#ffffff"/>
+  <text x="260" y="26" text-anchor="middle" font-size="13" fill="#555">Mock page (invented details, same layout as the real data)</text>
+  <rect x="60" y="40" width="400" height="500" fill="#fbfaf6" stroke="#bbb" stroke-width="1.5" rx="4"/>
+  <!-- letterhead -->
+  <rect x="60" y="40" width="400" height="140" fill="#fde8e8" stroke="#d33" stroke-width="2" rx="4"/>
+  <text x="78" y="68" font-size="17" font-weight="bold" fill="#222">Dr. Example Name</text>
+  <text x="78" y="88" font-size="11" fill="#444">MBBS, FCPS (Medicine)</text>
+  <text x="78" y="104" font-size="11" fill="#444">Consultant, Example General Hospital</text>
+  <text x="78" y="120" font-size="11" fill="#444">BMDC Reg. No: A-00000</text>
+  <rect x="380" y="56" width="62" height="38" fill="none" stroke="#999" stroke-dasharray="3 2"/>
+  <text x="411" y="80" text-anchor="middle" font-size="10" fill="#999">logo</text>
+  <text x="440" y="170" text-anchor="end" font-size="11" font-weight="bold" fill="#c22">letterhead crop (top 28%) → used</text>
+  <!-- handwritten body -->
+  <path d="M90 215 q20 -12 40 0 t40 0 t40 0 t40 0" fill="none" stroke="#2a4fb0" stroke-width="2"/>
+  <text x="96" y="262" font-size="22" fill="#2a4fb0" font-style="italic">Rx</text>
+  <g stroke="#2a4fb0" stroke-width="2" fill="none">
+    <path d="M140 290 q15 -10 30 0 t30 0 t30 0 t30 0 t30 0"/>
+    <path d="M150 330 q15 -10 30 0 t30 0 t30 0 t30 0"/>
+    <path d="M140 375 q15 -10 30 0 t30 0 t30 0 t30 0 t30 0 t30 0"/>
+    <path d="M150 415 q15 -10 30 0 t30 0 t30 0"/>
+    <path d="M140 460 q15 -10 30 0 t30 0 t30 0 t30 0 t30 0"/>
+  </g>
+  <text x="440" y="505" text-anchor="end" font-size="11" font-weight="bold" fill="#2a4fb0">handwritten patient notes → ignored</text>
+  <rect x="60" y="515" width="400" height="25" fill="#eee" stroke="#bbb"/>
+  <text x="260" y="532" text-anchor="middle" font-size="10" fill="#666">Chamber address · hotline · visiting hours</text>
+</svg>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bounded updates and explanation stability · Fatema Tamanna</title>
+<meta name="description" content="A bounded-update case study in intensive care on MIMIC-IV: freezing the physiology encoder and tracking how attributions and retrieved literature shift.">
+<meta property="og:title" content="Where does explanation movement go when part of a clinical model is frozen?">
+<meta property="og:description" content="A bounded-update case study in intensive care on MIMIC-IV: freezing the physiology encoder and tracking how attributions and retrieved literature shift.">
+<link rel="icon" href="../favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="name" href="../index.html">Fatema Tamanna</a>
+    <ul>
+      <li><a href="../index.html#publications">Publications</a></li>
+      <li><a href="../index.html#demos">Live demos</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="page-head">
+    <a class="back" href="../index.html#publications">All work</a>
+    <div class="kicker">Manuscript</div>
+    <h1>Where does explanation movement go when part of a clinical model is frozen?</h1>
+    <div class="authors">A bounded-update case study in intensive care using MIMIC-IV</div>
+    <div class="tags"><span>Explainability</span><span>Integrated Gradients</span><span>Retrieval</span><span>MIMIC-IV</span><span>PyTorch</span></div>
+    <div class="links"><a class="btn primary" href="https://github.com/empresst/bounded_update">Code</a></div>
+  </div>
+
+  <div class="article">
+
+<section>
+  <h2>The question</h2>
+  <p class="lead">When a clinical model is updated, clinicians who learned to trust its explanations need to know whether those explanations still mean the same thing. A common safeguard is a <i>bounded</i> update: freeze part of the model and retrain the rest. Does freezing actually keep the explanations stable, or does the change just move somewhere else?</p>
+</section>
+<section>
+  <h2>Setup</h2>
+  <ul>
+    <li>A two-stream ICU model: an LSTM encoder over physiology, an MLP over treatment context, and a fusion head. Trained on MIMIC-IV 2008–2013.</li>
+    <li>Drift is detected in 2020–2022, and the model is adapted two ways: <b>Run B</b> leaves the physiology encoder out of the optimiser; <b>Run C</b> lets every layer update.</li>
+    <li>Both are compared to the source model on Integrated Gradients attributions, and on PubMed abstracts retrieved using each patient's top attributed features.</li>
+  </ul>
+</section>
+<section>
+  <h2>Results</h2>
+  <figure class="figure"><img src="../images/bounded-relocation.jpg" alt="Attribution similarity, retrieval overlap and weight change for bounded and unconstrained updates" loading="lazy"><figcaption>(a) Attribution similarity to the source model, (b) overlap of attribution-conditioned literature retrieval with the source, (c) relative weight change per component.</figcaption></figure>
+  <ul>
+    <li><b>Attributions stay closer under the bounded update</b> on every measure, for example Spearman correlation 0.875 vs 0.812 and top-5 feature overlap 0.674 vs 0.552.</li>
+    <li><b>Retrieval is mixed:</b> physiology-side retrieval stays closer to the source under B (Jaccard 0.614 vs 0.517), but treatment-side retrieval stays closer under C (0.500 vs 0.555).</li>
+    <li><b>The change relocates.</b> With the encoder frozen, its weights do not move at all, while the treatment stream and fusion head change more than in the full update (0.212 vs 0.143 and 0.317 vs 0.198).</li>
+  </ul>
+  <p>So freezing protects the part you freeze, but the adaptation pressure moves into the trainable parts, and explanations tied to those parts can shift more, not less.</p>
+</section>
+<section>
+  <h2>Robustness checks</h2>
+  <p>The repository includes a five-seed replication, a seed-to-seed noise floor for the attribution measures, a broader 2009–2019 PubMed corpus (3,668 abstracts) for the retrieval check, faithfulness checks on the attributions, and patient-specific grounding of the retrieved evidence. No patient-level data is published.</p>
+</section>
+  </div>
+
+  <section>
+    <h2>More work</h2>
+    <div class="next-work"><a href="kotha-ai.html"><small>Live demo</small>Kotha AI</a><a href="ai-messenger.html"><small>Live demo</small>AI Messenger</a><a href="physician-id.html"><small>Project</small>Physician ID from prescription photos</a></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Fatema Tamanna · <a href="mailto:fatimatamannaah@gmail.com">fatimatamannaah@gmail.com</a></div>
+</footer>
+
+</body>
+</html>

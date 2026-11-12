@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kotha AI · Fatema Tamanna</title>
+<meta name="description" content="A live Bangla voice receptionist that books, reschedules and cancels real appointments, with a staff portal showing every call.">
+<meta property="og:title" content="Kotha AI: a Bangla AI receptionist for dental clinics">
+<meta property="og:description" content="A live Bangla voice receptionist that books, reschedules and cancels real appointments, with a staff portal showing every call.">
+<link rel="icon" href="../favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="name" href="../index.html">Fatema Tamanna</a>
+    <ul>
+      <li><a href="../index.html#publications">Publications</a></li>
+      <li><a href="../index.html#demos">Live demos</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="page-head">
+    <a class="back" href="../index.html#demos">All work</a>
+    <div class="kicker">Live demo</div>
+    <h1>Kotha AI: a Bangla AI receptionist for dental clinics</h1>
+    
+    <div class="tags"><span>LiveKit</span><span>Speech-to-text</span><span>LLM agents</span><span>Next.js</span><span>Postgres</span><span>Supabase</span></div>
+    <div class="links"><a class="btn primary" href="https://kotha-ai-bd.vercel.app">Try the live demo</a><a class="btn" href="https://github.com/empresst/kotha-ai">Code</a></div>
+  </div>
+
+  <div class="article">
+
+<figure class="figure"><video class="wide-video" autoplay muted loop playsinline preload="metadata" poster="../images/kotha-hero-poster.jpg" aria-label="Kotha AI landing page where the 3D receptionist waves hello"><source src="../images/kotha-hero.mp4" type="video/mp4"></video><figcaption>The landing page: the 3D receptionist waves when the page opens. Visitors can start a live Bangla call with the demo clinic straight from the browser.</figcaption></figure>
+<section>
+  <h2>What it does</h2>
+  <p class="lead">Small clinics in Bangladesh miss calls after hours and during busy chambers. Kotha AI answers in natural, Bangladeshi-style Bangla, finds a real free slot, books it, and later lets the same caller move or cancel it. Every call shows up in a staff portal with its transcript, an English translation and the extracted details.</p>
+  <div class="facts">
+    <div><b>48 / 50</b><span>Bangladeshi names recognised, vs 38 / 50 for the alternative</span></div>
+    <div><b>~2.7 s</b><span>median reply time on the deployed agent (103 replies)</span></div>
+    <div><b>0</b><span>double bookings possible: enforced by a database constraint</span></div>
+  </div>
+</section>
+<figure class="figure figure-small"><video autoplay muted loop playsinline preload="metadata" poster="../images/kotha-penguin-poster.jpg" aria-label="3D penguin mascot animation"><source src="../images/kotha-penguin.mp4" type="video/mp4"></video><figcaption>The 3D penguin mascot beside the clinic sign-up form.</figcaption></figure>
+<section>
+  <h2>Engineering decisions</h2>
+  <ul>
+    <li><b>Speech recognition chosen by measurement.</b> On 50 clips of Bangladeshi names, Azure <code>bn-BD</code> with a list of about 200 common names got 48 right; the alternative split names into ordinary words. The weaker provider stays as an automatic fallback.</li>
+    <li><b>Correctness lives in the database, not the prompt.</b> Bookings go through Postgres functions, and an exclusion constraint makes overlapping appointments impossible even under concurrent calls. Each treatment blocks the doctor for its real length.</li>
+    <li><b>The model is never trusted with facts it can get wrong.</b> Times, dates and phone read-backs are generated in code; the agent reads back the full booking before confirming, and the portal shows what the database did, not what the model claimed.</li>
+    <li><b>Every provider has a fallback, and silent failures are caught.</b> A watchdog notices when speech recognition goes quiet without raising an error and replaces the session in about 0.1 s.</li>
+    <li><b>Tested like a phone system.</b> Scripted live-audio callers ran every flow against both the local and the deployed agent; three bugs were found and fixed that way.</li>
+  </ul>
+</section>
+<figure class="figure"><img src="../images/kotha-slots.jpg" alt="Doctors and live appointment slot board" loading="lazy"><figcaption>The live slot board. When the agent books, moves or cancels an appointment during a call, the board updates immediately.</figcaption></figure>
+<section>
+  <h2>Sounding Bangladeshi</h2>
+  <p>Language models default to Kolkata-style Bangla. The prompt is written in Bangla with Dhaka-style examples and a list of words to avoid, Bangladeshi-trained voices are used, and a small layer of code swaps the remaining giveaways before speech and pronounces doctors' titles and times the way people in Dhaka say them.</p>
+</section>
+<section>
+  <h2>Stack</h2>
+  <table class="plain">
+    <tr><th>Part</th><th>Choice</th></tr>
+    <tr><td>Real-time voice</td><td>LiveKit Cloud and LiveKit Agents (Python), WebRTC</td></tr>
+    <tr><td>Speech</td><td>Azure <code>bn-BD</code> with a name list, Deepgram Nova-3 fallback; Azure and Cartesia voices</td></tr>
+    <tr><td>Language model</td><td>Gemma 4 31B via LiveKit Inference, Groq fallback</td></tr>
+    <tr><td>Data</td><td>Supabase Postgres 17 (14 tables, row-level security, Realtime)</td></tr>
+    <tr><td>Web</td><td>Next.js 16 on Vercel, 3D VRM avatar on the landing page</td></tr>
+  </table>
+  <p class="note">The clinic, doctors and patients in the demo are fictional. The first call after a quiet period takes about 20 seconds to connect while the free tier wakes up.</p>
+</section>
+  </div>
+
+  <section>
+    <h2>More work</h2>
+    <div class="next-work"><a href="ai-messenger.html"><small>Live demo</small>AI Messenger</a><a href="physician-id.html"><small>Project</small>Physician ID from prescription photos</a><a href="video-to-recipe.html"><small>Project</small>Video to recipe</a></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Fatema Tamanna · <a href="mailto:fatimatamannaah@gmail.com">fatimatamannaah@gmail.com</a></div>
+</footer>
+
+</body>
+</html>

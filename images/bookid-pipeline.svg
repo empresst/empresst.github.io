@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 230" font-family="Helvetica, Arial, sans-serif" font-size="13">
+  <rect width="900" height="230" fill="#ffffff"/>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#555"/></marker></defs>
+  <g fill="#f3f5fa" stroke="#7a8bb5" stroke-width="1.5">
+    <rect x="10" y="85" width="120" height="60" rx="8"/>
+    <rect x="170" y="85" width="120" height="60" rx="8"/>
+    <rect x="335" y="20" width="160" height="60" rx="8"/>
+    <rect x="335" y="150" width="160" height="60" rx="8"/>
+    <rect x="535" y="85" width="140" height="60" rx="8"/>
+    <rect x="715" y="85" width="175" height="60" rx="8"/>
+  </g>
+  <g text-anchor="middle" fill="#222">
+    <text x="70" y="110" font-weight="bold">Page photo</text><text x="70" y="128" font-size="11" fill="#555">.jpg</text>
+    <text x="230" y="110" font-weight="bold">Crop top 28%</text><text x="230" y="128" font-size="11" fill="#555">printed letterhead</text>
+    <text x="415" y="45" font-weight="bold">ResNet-50 embedding</text><text x="415" y="63" font-size="11" fill="#555">2048-d, ImageNet weights</text>
+    <text x="415" y="175" font-weight="bold">OCR → TF-IDF</text><text x="415" y="193" font-size="11" fill="#555">EasyOCR / PaddleOCR</text>
+    <text x="605" y="110" font-weight="bold">L2-normalise</text><text x="605" y="128" font-size="11" fill="#555">+ concatenate</text>
+    <text x="802" y="105" font-weight="bold">1-NN cosine retrieval</text><text x="802" y="122" font-size="11" fill="#555">→ PHY_ID + similarity</text><text x="802" y="137" font-size="11" fill="#555">low similarity → REVIEW</text>
+  </g>
+  <g stroke="#555" stroke-width="1.5" fill="none" marker-end="url(#a)">
+    <path d="M130 115H168"/><path d="M290 105L333 55"/><path d="M290 125L333 175"/>
+    <path d="M495 55L533 105"/><path d="M495 175L533 125"/><path d="M675 115H713"/>
+  </g>
+</svg>

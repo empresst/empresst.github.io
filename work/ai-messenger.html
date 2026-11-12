@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Messenger · Fatema Tamanna</title>
+<meta name="description" content="A family messenger where a busy person's AI twin replies in their tone, using retrieval over their journals and chats and a personality profile.">
+<meta property="og:title" content="AI Messenger: an AI twin that replies in your own voice">
+<meta property="og:description" content="A family messenger where a busy person's AI twin replies in their tone, using retrieval over their journals and chats and a personality profile.">
+<link rel="icon" href="../favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="name" href="../index.html">Fatema Tamanna</a>
+    <ul>
+      <li><a href="../index.html#publications">Publications</a></li>
+      <li><a href="../index.html#demos">Live demos</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="page-head">
+    <a class="back" href="../index.html#demos">All work</a>
+    <div class="kicker">Live demo</div>
+    <h1>AI Messenger: an AI twin that replies in your own voice</h1>
+    
+    <div class="tags"><span>RAG</span><span>FAISS</span><span>LLM</span><span>FastAPI</span><span>MongoDB</span><span>WebSockets</span></div>
+    <div class="links"><a class="btn primary" href="https://ai-twin-fastapi.onrender.com">Try the live demo</a><a class="btn" href="https://github.com/empresst/AI_messenger">Code</a><a class="btn" href="https://github.com/empresst/EchoSoul">Backend: EchoSoul</a></div>
+  </div>
+
+  <div class="article">
+
+<figure class="figure"><img src="../images/ai-messenger.jpg" alt="AI Messenger chat where an AI twin replies" loading="lazy"><figcaption>Nipa's AI twin replying on her behalf, drawing on her journal entries about hiking, kite flying and a busy week.</figcaption></figure>
+<section>
+  <h2>The idea</h2>
+  <p class="lead">Family members message each other all day, and sometimes the person they need is busy. When someone turns on AI mode, their twin answers for them: in their tone, knowing what they have written in their journal and said in past conversations, and aware of who it is talking to.</p>
+</section>
+<section>
+  <h2>How a reply is made</h2>
+  <ol>
+    <li><b>Memory:</b> every journal entry and message is embedded and indexed with FAISS. When a message arrives, the twin retrieves the most relevant memories for that person and that conversation.</li>
+    <li><b>Personality:</b> a Big Five profile (openness, conscientiousness, extraversion, agreeableness, neuroticism) is inferred from the person's own words only, cached and refreshed daily so new journals slowly reshape it.</li>
+    <li><b>Relationship:</b> the reply is conditioned on how the two people are related, so a daughter's twin talks to her father differently than to her brother.</li>
+    <li><b>Generation:</b> an LLM writes the reply from the retrieved memories, the personality hint and the recent conversation.</li>
+  </ol>
+</section>
+<section>
+  <h2>Privacy and safety</h2>
+  <ul>
+    <li>A twin only learns from its owner's own messages and private journals, never from what others wrote.</li>
+    <li>Journals are only stored after explicit consent, and sending and journaling are rate limited.</li>
+    <li>Passwords are salted and hashed with PBKDF2; sessions expire.</li>
+  </ul>
+</section>
+<section>
+  <h2>Try it</h2>
+  <p>The demo has a small family (Nipa, her brother Nick and their parents) with journals, chats and relationships already set up. Log in as Nick and ask Nipa whether she is free next Saturday: her twin knows about her football final. Demo logins are in the repository's README. The free server can take up to a minute to wake up.</p>
+  <table class="plain">
+    <tr><th>Part</th><th>Choice</th></tr>
+    <tr><td>API and real-time chat</td><td>FastAPI, WebSockets</td></tr>
+    <tr><td>Storage</td><td>MongoDB Atlas</td></tr>
+    <tr><td>Retrieval</td><td>FAISS over Gemini embeddings</td></tr>
+    <tr><td>Generation</td><td>Open-weight LLM served through Groq</td></tr>
+  </table>
+</section>
+  </div>
+
+  <section>
+    <h2>More work</h2>
+    <div class="next-work"><a href="physician-id.html"><small>Project</small>Physician ID from prescription photos</a><a href="video-to-recipe.html"><small>Project</small>Video to recipe</a><a href="matritya.html"><small>Project</small>Matritya</a></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Fatema Tamanna · <a href="mailto:fatimatamannaah@gmail.com">fatimatamannaah@gmail.com</a></div>
+</footer>
+
+</body>
+</html>

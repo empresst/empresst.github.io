@@ -1,110 +1,184 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/master.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Fatema Ferdous Tamanna</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fatema Tamanna</title>
+<meta name="description" content="Fatema Tamanna: freelance AI engineer and ML/DL researcher working on deep learning for time series and sequential data, and on AI agents and LLM applications.">
+<meta property="og:title" content="Fatema Tamanna">
+<meta property="og:description" content="Freelance AI engineer and ML/DL researcher: time series and sequential modelling, AI agents and LLM applications.">
+<meta property="og:image" content="https://empresst.github.io/images/avatar.jpg">
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
 </head>
-
 <body>
-    <!--Navigation-->
-    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-        <div class="container-fluid padding">
-            <a class="navbar-brand" href="index.html"> Fatema Ferdous Tamanna </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="portfolio.html">Portfolio </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="resume.html">Resume </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="blog1.html">Blog </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<nav>
+  <div class="wrap">
+    <a class="name" href="#">Fatema Tamanna</a>
+    <ul>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#demos">Live demos</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
-    <!----Content---->
-    <div class="container-fuild padding ">
-        <div class="row padding myinfo text-center">
-            <div class="col-md-12 col-lg-6">
-                <img src="images/pro.png" class="rounded" width="100%">
-            </div>
-            <div class="jumbotron col-md-12 col-lg-6">
-                <h4 class="font-weight-bold">Fatema Ferdous Tamanna</h4>
-                <p class="lead">Passionate Programmer</p>
-                <hr class="my-4">
-                <p class="text-left"> Committed to continuous learning and approaching projects with a supportive, team-oriented mindset.Passionate about software architecture, machine learning, and cloud computing. Regular attendee of hackathons and competitive programming.
-                </p>
-            </div>
-        </div>
+<main class="wrap">
+
+<header>
+  <div class="hero">
+    <img src="images/avatar.jpg" alt="Fatema Tamanna">
+    <div>
+      <h1>Fatema Tamanna</h1>
+      <p class="role">Freelance AI engineer · ML/DL researcher in time series and sequential modelling</p>
+      <div class="links">
+        <a class="btn primary" href="mailto:fatimatamannaah@gmail.com">Email</a>
+        <a class="btn" href="https://github.com/empresst">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/fatematamanna/">LinkedIn</a>
+      </div>
     </div>
-    <figure>
-        <div class="fixed-bg"></div>
-    </figure>
+  </div>
+</header>
 
-    <!----Footer---->
-    <footer>
-        <div class="container-fluid padding">
-            <div class="row text-center footbar">
-                <div class="col-12">
-                    <div class="social padding">
-                        <a href="profile.php?id=100009303875477"><i class="fa fa-facebook-square"></i></a>
-                        <a href="https://www.linkedin.com/in/fatematamanna/"><i class="fa fa-linkedin"></i></a>
-                        <a href="https://github.com/empresst"><i class="fa fa-github"></i></a>
-                        <a href="https://www.quora.com"><i class="fa fa-quora"></i></a>
-                        <a href="https://twitter.com"><i class="fa fa-twitter"></i></a>
+<section id="research">
+  <h2>Research</h2>
+  <p class="lead">My research is on deep learning for time series and sequential data: how sequence models such as LSTMs, GRUs, temporal convolutional networks and attention-based hybrids learn from data that unfolds over time, how to make their predictions more accurate, and how they behave when that data changes.</p>
+  <p>I have worked on hybrid ensembles for forecasting and load prediction, and on sequence models trained on hospital time series that have to cope with years of shifting data. As a freelance AI engineer, I also build production AI systems: real-time voice agents, retrieval-augmented LLM applications and computer-vision pipelines.</p>
+  <div class="focus">
+    <div><b>Time series forecasting</b>Hybrid deep learning ensembles (BiLSTM, BiGRU, TCN, attention, XGBoost) for forecasting and load prediction.</div>
+    <div><b>Sequence models under change</b>How recurrent and tree-based models behave, and how to update them, when sequential data drifts over time.</div>
+    <div><b>Explaining sequence models</b>Whether feature attributions (Integrated Gradients, SHAP) stay stable when a model is updated.</div>
+  </div>
+</section>
 
-                    </div>
-                </div>
-                <div class="col-12">
-                    <hr class="light">
-                </div>
-                <div class="row text-center footlinks col-12">
-                    <div class="col-3">
-                        <a class="nav-link" href="index.html">Home </a>
-                    </div>
-                    <div class="col-3">
-                        <a class="nav-link" href="portfolio.html">Portfolio</a>
-                    </div>
-                    <div class="col-3">
-                        <a class="nav-link" href="resume.html">Resume</a>
-                    </div>
-                    <div class="col-3">
-                        <a class="nav-link" href="blog1.html">Blog</a>
-                    </div>
-                </div>
-                <div class="col-12 text-center">
-                    <p>&copy 2023 Fatema Ferdous Tamanna | All rights Reserved</p>
-                </div>
-            </div>
+<section id="publications">
+  <h2>Publications and preprints</h2>
 
-        </div>
-    </footer>
+  <div class="pub">
+    <h3><span class="venue">STI 2024</span><a href="https://easychair.org/publications/preprint/v2TS">Hybrid Deep Learning Approach for Load Profile Prediction</a></h3>
+    <div class="authors"><b>Fatema Tamanna</b>, K. M. Merajul Arefin, Md. Abdul Masud, Md. Samsuzzaman</div>
+    <p>BiLSTM, BiGRU and TCN layers with self-attention, combined by an XGBoost regressor, for real-time load forecasting in smart grids. 6th International Conference on Sustainable Technologies for Industry 5.0, Dhaka.</p>
+    <div class="small-links"><a href="https://easychair.org/publications/preprint/v2TS">Paper</a><a href="https://github.com/empresst/STI">Code</a></div>
+  </div>
 
+  <div class="pub">
+    <h3><span class="venue">ICISET 2024</span><a href="https://ieeexplore.ieee.org/abstract/document/10939673">Enhancing Prediction Accuracy using Ensemble Deep Learning Methods on Time Series Data</a></h3>
+    <div class="authors"><b>Fatema Ferdous Tamanna</b>, Tamanna Akter Sonaly, Md. Abdul Masud</div>
+    <p>An ensemble of BiLSTM, BiGRU and TCN with an XGBoost meta-learner for general time series forecasting. International Conference on Innovations in Science, Engineering and Technology (IEEE).</p>
+    <div class="small-links"><a href="https://ieeexplore.ieee.org/abstract/document/10939673">IEEE Xplore</a><a href="https://github.com/empresst/ICISET">Code</a></div>
+  </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <div class="pub">
+    <h3><span class="venue">Preprint</span><a href="work/audit-before-you-update.html">Audit Before You Update: Recording Artifacts and the Limits of Bounded Model Updates in MIMIC-IV ICU Prediction</a></h3>
+    <div class="authors"><b>Fatema Ferdous Tamanna</b>, K. M. Merajul Arefin, Md. Abdul Masud</div>
+    <p>Sequence models (LSTM and gradient-boosted trees) on ICU time series from 2008–2022: audit recording artifacts before any update, detect drift without labels, and compare bounded against full model updates with pre-specified non-inferiority margins.</p>
+    <div class="small-links"><a class="more" href="work/audit-before-you-update.html">Read more</a><a href="https://github.com/empresst/DataAudit">Code and manuscript</a></div>
+  </div>
+
+  <div class="pub">
+    <h3><span class="venue">Manuscript</span><a href="work/bounded-update.html">Where does explanation movement go when part of a clinical model is frozen? A bounded-update case study in intensive care</a></h3>
+    <p>Updates a two-stream sequence model (LSTM over hourly ICU time series) on newer data with and without freezing its encoder, and tracks how its explanations and the literature they retrieve shift.</p>
+    <div class="small-links"><a class="more" href="work/bounded-update.html">Read more</a><a href="https://github.com/empresst/bounded_update">Code</a></div>
+  </div>
+
+</section>
+
+<section id="demos">
+  <h2>Live demos</h2>
+  <div class="cards">
+    <div class="card">
+      <h3><a class="stretch" href="work/kotha-ai.html">Kotha AI</a> <span class="live">● Live</span></h3>
+      <p>A Bangla voice receptionist for dental clinics that books, reschedules and cancels real appointments over a live call, with a staff portal showing every transcript.</p>
+      <ul>
+        <li>Speech recognition chosen by measurement: 48/50 Bangladeshi names correct vs 38/50 for the alternative</li>
+        <li>Double-booking made impossible in the database, not the prompt</li>
+        <li>Automatic fallback for every provider, with a watchdog for silent failures</li>
+      </ul>
+      <div class="tags"><span>LiveKit</span><span>Speech</span><span>LLM agents</span><span>Next.js</span><span>Postgres</span></div>
+      <div class="small-links"><a class="more" href="work/kotha-ai.html">Read more</a><a href="https://kotha-ai-bd.vercel.app">Try it</a><a href="https://github.com/empresst/kotha-ai">Code</a></div>
+    </div>
+    <div class="card">
+      <h3><a class="stretch" href="work/ai-messenger.html">AI Messenger</a> <span class="live">● Live</span></h3>
+      <p>A family messenger with an AI-twin mode: when someone is busy, their twin replies in their own tone, using retrieval over their journals and past conversations and a Big Five personality profile.</p>
+      <ul>
+        <li>Retrieval-augmented memory with FAISS and per-user privacy boundaries</li>
+        <li>Relationship-aware replies (parent, sibling, partner)</li>
+        <li>Real-time chat over WebSockets</li>
+      </ul>
+      <div class="tags"><span>RAG</span><span>FastAPI</span><span>MongoDB</span><span>FAISS</span></div>
+      <div class="small-links"><a class="more" href="work/ai-messenger.html">Read more</a><a href="https://ai-twin-fastapi.onrender.com">Try it</a><a href="https://github.com/empresst/AI_messenger">Code</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Selected projects</h2>
+  <div class="cards">
+    <div class="card">
+      <h3><a class="stretch" href="work/physician-id.html">Physician ID from prescription photos</a></h3>
+      <p>Identifies the prescribing doctor from a phone photo of a prescription page using the printed letterhead: ResNet-50 embeddings, OCR features and nearest-neighbour retrieval. 93.1% leave-one-out accuracy on the images that can be matched.</p>
+      <div class="tags"><span>Computer vision</span><span>OCR</span><span>PyTorch</span></div>
+      <div class="small-links"><a class="more" href="work/physician-id.html">Read more</a><a href="https://github.com/empresst/book-id-scanner">Code</a></div>
+    </div>
+    <div class="card">
+      <h3><a class="stretch" href="work/video-to-recipe.html">Video to recipe with vision-language models</a></h3>
+      <p>Turns a cooking video into a structured recipe: selects key frames, captions them with BLIP, transcribes the audio with Whisper, and has an LLM combine both into a recipe with dietary variants.</p>
+      <div class="tags"><span>Multimodal</span><span>BLIP</span><span>Whisper</span><span>LLM</span></div>
+      <div class="small-links"><a class="more" href="work/video-to-recipe.html">Read more</a><a href="https://github.com/empresst/VisionLanguage-Recipe-Generator">Code</a></div>
+    </div>
+    <div class="card">
+      <h3><a class="stretch" href="work/matritya.html">Matritya: maternal health app</a></h3>
+      <p>An Android app for expecting mothers in Bangladesh with trimester-based diet and exercise plans, symptom-based disease prediction, vaccination reminders and a community space.</p>
+      <div class="tags"><span>Android</span><span>Java</span><span>mHealth</span></div>
+      <div class="small-links"><a class="more" href="work/matritya.html">Read more</a><a href="https://github.com/empresst/Java_AndroidApp">Code</a></div>
+    </div>
+    <div class="card">
+      <h3><a href="https://github.com/empresst/GenomeClassification">Genome variant classification</a></h3>
+      <p>Classifies ClinVar single-nucleotide variants as benign, pathogenic or of uncertain significance with a 1D CNN over allele encodings and genomic position.</p>
+      <div class="tags"><span>Bioinformatics</span><span>Deep learning</span></div>
+      <div class="small-links"><a href="https://github.com/empresst/GenomeClassification">Code</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="background">
+  <h2>Education and recognition</h2>
+  <div class="timeline">
+    <div><span>2019 – 2024</span><p><b>BSc in Computer Science and Engineering</b><br>Patuakhali Science and Technology University, Bangladesh</p></div>
+    <div><span>2023 – 2024</span><p><b>Research Assistant</b>, Patuakhali Science and Technology University<br>Hybrid deep learning models for time series forecasting, leading to the ICISET 2024 and STI 2024 papers.</p></div>
+    <div><span>2023</span><p><b>Champion</b>, Barisal Divisional Hackathon (Hackverse)</p></div>
+    <div><span>2022</span><p><b>9th place</b>, Mujib Borsho IT Carnival</p></div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Tools</h2>
+  <div class="skills">
+    <span>Python</span><span>PyTorch</span><span>TensorFlow</span><span>scikit-learn</span><span>XGBoost</span><span>Hugging Face</span><span>OpenCV</span><span>LangChain</span><span>LiveKit</span><span>FastAPI</span><span>Next.js</span><span>PostgreSQL</span><span>MongoDB</span><span>BigQuery</span><span>SQL</span><span>Java</span><span>C++</span>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>I'm happy to talk about research collaborations, graduate study and AI engineering. Email is the quickest way to reach me.</p>
+  <div class="links">
+    <a class="btn primary" href="mailto:fatimatamannaah@gmail.com">fatimatamannaah@gmail.com</a>
+    <a class="btn" href="https://github.com/empresst">GitHub</a>
+    <a class="btn" href="https://www.linkedin.com/in/fatematamanna/">LinkedIn</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Fatema Tamanna</div>
+</footer>
+
 </body>
-
 </html>

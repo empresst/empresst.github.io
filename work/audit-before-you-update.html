@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit Before You Update · Fatema Tamanna</title>
+<meta name="description" content="A change-control pipeline for ICU prediction models on MIMIC-IV: data audit, label-free drift gate, bounded vs full updates, and explanation stability checks.">
+<meta property="og:title" content="Audit Before You Update: Recording Artifacts and the Limits of Bounded Model Updates in MIMIC-IV ICU Prediction">
+<meta property="og:description" content="A change-control pipeline for ICU prediction models on MIMIC-IV: data audit, label-free drift gate, bounded vs full updates, and explanation stability checks.">
+<link rel="icon" href="../favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="name" href="../index.html">Fatema Tamanna</a>
+    <ul>
+      <li><a href="../index.html#publications">Publications</a></li>
+      <li><a href="../index.html#demos">Live demos</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="page-head">
+    <a class="back" href="../index.html#publications">All work</a>
+    <div class="kicker">Preprint</div>
+    <h1>Audit Before You Update: Recording Artifacts and the Limits of Bounded Model Updates in MIMIC-IV ICU Prediction</h1>
+    <div class="authors"><b>Fatema Ferdous Tamanna</b>, K. M. Merajul Arefin, Md. Abdul Masud</div>
+    <div class="tags"><span>Clinical ML</span><span>Dataset shift</span><span>MIMIC-IV</span><span>Explainability</span><span>XGBoost</span><span>LSTM</span></div>
+    <div class="links"><a class="btn primary" href="https://github.com/empresst/DataAudit">Code and manuscript</a></div>
+  </div>
+
+  <div class="article">
+
+<section>
+  <h2>The question</h2>
+  <p class="lead">ICU prediction models lose accuracy over time, and the usual answer is to retrain them. But part of what looks like drift in a hospital database is not a change in patients at all: it is a change in how things were recorded. Before updating a model, we should check what actually changed.</p>
+  <p>This paper builds and tests a change-control pipeline for that: audit the data first, update only when drift is detected, prefer the smallest update that works, and verify that the model's explanations still make sense afterwards.</p>
+</section>
+<section>
+  <h2>What the audit found</h2>
+  <p>Auditing MIMIC-IV 3.1 across 2008–2022 turned up recording artifacts that a drift detector or a retrained model would otherwise learn as if they were clinical change:</p>
+  <ul>
+    <li><b>Missing tables:</b> input and procedure records missing for a cluster of ICU stays in 2020–2022.</li>
+    <li><b>eMAR onset:</b> electronic medication administration records only become available during 2011–2013.</li>
+    <li><b>Vasopressor ItemID migration:</b> the codes used to record vasopressors change over time, which silently changes the label.</li>
+  </ul>
+  <p>Every result is reported on the cleaned cohort, and the retained and excluded stays are compared to check the cleaning did not bias the sample.</p>
+</section>
+<section>
+  <h2>Method: four phases</h2>
+  <ol>
+    <li><b>Audit</b> the data and remove recording artifacts.</li>
+    <li><b>Gate</b> updates on label-free drift detection: classifier two-sample tests with patient-clustered bootstrap calibration. A replay of the gated schedule on null data raised no false alarms.</li>
+    <li><b>Adapt</b> a model trained on 2008–2013 to three later eras (2014–2016, 2017–2019, 2020–2022), comparing a never-updated source model (A), a <b>bounded update</b> that retrains only the treatment-context encoder and fusion head (B), and a full update (C). Both two-stream neural models (LSTM + MLP) and modular gradient-boosted trees, for vasopressor, intubation and mortality prediction.</li>
+    <li><b>Verify</b> that explanations (Integrated Gradients, TreeSHAP) and literature retrieval (MedCPT over PubMed) stay consistent after the update.</li>
+  </ol>
+  <p>Comparisons use a pre-specified non-inferiority margin of 0.015 AUROC, five seeds, and matched hyperparameters (shared and separately tuned learning rates).</p>
+</section>
+<section>
+  <h2>Results</h2>
+  <figure class="figure"><img src="../images/dataaudit-auroc.jpg" alt="Incident AUROC across eras for source, bounded and full-update models" loading="lazy"><figcaption>Incident AUROC of the final models on each era's evaluation cohort (5-seed means, error bars show seed standard deviation). Top row: two-stream neural models; bottom row: modular gradient-boosted trees. In most panels both the bounded (B) and full (C) updates stay above the never-updated source model and close to each other.</figcaption></figure>
+  <p>The paper's non-inferiority analysis then tests, for each task and era, whether the bounded update stays within 0.015 AUROC of the full update, and reports the cases where it does not: the limits in the title.</p>
+</section>
+<section>
+  <h2>Data and reproducibility</h2>
+  <p>MIMIC-IV requires credentialed PhysioNet access. Following the data use agreement, no patient-level records, embeddings or model weights are published; the repository contains the full pipeline, the audit queries and their verification scripts, aggregate results, and the manuscript source.</p>
+</section>
+  </div>
+
+  <section>
+    <h2>More work</h2>
+    <div class="next-work"><a href="bounded-update.html"><small>Manuscript</small>Bounded updates and explanation stability</a><a href="kotha-ai.html"><small>Live demo</small>Kotha AI</a><a href="ai-messenger.html"><small>Live demo</small>AI Messenger</a></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Fatema Tamanna · <a href="mailto:fatimatamannaah@gmail.com">fatimatamannaah@gmail.com</a></div>
+</footer>
+
+</body>
+</html>

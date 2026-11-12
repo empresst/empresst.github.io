@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physician ID from prescription photos · Fatema Tamanna</title>
+<meta name="description" content="Predicts which doctor issued a prescription from a phone photo of the page, using the printed letterhead, CNN embeddings, OCR and retrieval.">
+<meta property="og:title" content="Identifying the prescribing physician from prescription photos">
+<meta property="og:description" content="Predicts which doctor issued a prescription from a phone photo of the page, using the printed letterhead, CNN embeddings, OCR and retrieval.">
+<link rel="icon" href="../favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="name" href="../index.html">Fatema Tamanna</a>
+    <ul>
+      <li><a href="../index.html#publications">Publications</a></li>
+      <li><a href="../index.html#demos">Live demos</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="page-head">
+    <a class="back" href="../index.html#projects">All work</a>
+    <div class="kicker">Project</div>
+    <h1>Identifying the prescribing physician from prescription photos</h1>
+    
+    <div class="tags"><span>Computer vision</span><span>OCR</span><span>Image retrieval</span><span>PyTorch</span><span>ResNet-50</span></div>
+    <div class="links"><a class="btn primary" href="https://github.com/empresst/book-id-scanner">Code and write-up</a></div>
+  </div>
+
+  <div class="article">
+
+<section>
+  <h2>The problem</h2>
+  <p class="lead">Given phone photos of handwritten prescription pages, predict which physician (<code>PHY_ID</code>) issued each page, from the image content alone. The dataset had 105 photos and 67 physicians, and 47 of those physicians appear only once.</p>
+</section>
+<section>
+  <h2>The key insight</h2>
+  <p>It first looked like a patient-matching problem, but the labels showed every physical book contained pages from several different physicians. The identity follows the doctor, so the signal is the <b>printed letterhead</b>, not the handwriting. Measured on the data, letterhead crops from the same physician were about twice as similar (SSIM ~0.51) as crops from different physicians (~0.27).</p>
+  <figure class="figure"><img class="narrow" src="../images/bookid-layout.svg" alt="Mock prescription page showing the letterhead region" loading="lazy"><figcaption>Mock page with invented details, same layout as the real data. Only the printed letterhead band is used; the handwritten, patient-specific part is ignored.</figcaption></figure>
+</section>
+<section>
+  <h2>Method</h2>
+  <figure class="figure"><img src="../images/bookid-pipeline.svg" alt="Pipeline from page photo to physician ID" loading="lazy"><figcaption>Crop the top 28% of the page, embed it with ResNet-50 and with OCR text features, concatenate, and predict by nearest-neighbour retrieval. Low-similarity matches are flagged for human review.</figcaption></figure>
+  <p>Retrieval instead of classification, because most physicians have one or two examples. The similarity score doubles as a confidence value, so uncertain predictions go to a person instead of being acted on.</p>
+</section>
+<section>
+  <h2>Results and what I learned</h2>
+  <figure class="figure"><img src="../images/bookid-results.svg" alt="Leave-one-out accuracy for each version" loading="lazy"><figcaption>Leave-one-out accuracy of each version on the 58 images whose physician appears more than once. Each image is predicted from the other 104.</figcaption></figure>
+  <ul>
+    <li><b>Honest evaluation.</b> The first version reported about 100% because it tested on its training images. Every number here is leave-one-out.</li>
+    <li><b>More knobs made it worse.</b> A version with four signals and tuned fusion weights scored 91.4% in cross-validation but only 84.5% under leave-one-out: with 58 evaluable images, tuning overfits.</li>
+    <li><b>One variable at a time.</b> Swapping only the OCR engine gave the best result, 93.1%.</li>
+    <li><b>The data sets the ceiling.</b> Physicians seen only once can never be matched, which caps all-image accuracy at 55.2%. More examples per physician would help more than a bigger model.</li>
+  </ul>
+  <p class="note">The real images are patient medical records, so they are not published.</p>
+</section>
+  </div>
+
+  <section>
+    <h2>More work</h2>
+    <div class="next-work"><a href="video-to-recipe.html"><small>Project</small>Video to recipe</a><a href="matritya.html"><small>Project</small>Matritya</a><a href="audit-before-you-update.html"><small>Preprint</small>Audit Before You Update</a></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Fatema Tamanna · <a href="mailto:fatimatamannaah@gmail.com">fatimatamannaah@gmail.com</a></div>
+</footer>
+
+</body>
+</html>

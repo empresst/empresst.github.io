@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Video to recipe · Fatema Tamanna</title>
+<meta name="description" content="Turns a cooking video into a structured recipe by combining key-frame captions with an audio transcript, plus dietary variants.">
+<meta property="og:title" content="Video to recipe with vision-language models">
+<meta property="og:description" content="Turns a cooking video into a structured recipe by combining key-frame captions with an audio transcript, plus dietary variants.">
+<link rel="icon" href="../favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="name" href="../index.html">Fatema Tamanna</a>
+    <ul>
+      <li><a href="../index.html#publications">Publications</a></li>
+      <li><a href="../index.html#demos">Live demos</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="page-head">
+    <a class="back" href="../index.html#projects">All work</a>
+    <div class="kicker">Project</div>
+    <h1>Video to recipe with vision-language models</h1>
+    
+    <div class="tags"><span>Multimodal</span><span>BLIP</span><span>Whisper</span><span>LLM</span><span>OpenCV</span><span>Flask</span></div>
+    <div class="links"><a class="btn primary" href="https://github.com/empresst/VisionLanguage-Recipe-Generator">Code</a></div>
+  </div>
+
+  <div class="article">
+
+<section>
+  <h2>What it does</h2>
+  <p class="lead">Upload a cooking video or paste a YouTube link, and get back a complete recipe: ingredients with quantities, numbered steps and tips. Optionally, get the same dish adapted to a diet such as vegan or gluten-free.</p>
+</section>
+<section>
+  <h2>Pipeline</h2>
+  <ol>
+    <li><b>Key frames:</b> OpenCV picks frames where the scene changes, using frame differences, so the model sees each cooking step once.</li>
+    <li><b>Vision:</b> BLIP captions each key frame ("chicken being cooked in a pan with spices").</li>
+    <li><b>Audio:</b> FFmpeg extracts the audio and Whisper transcribes it, or the video's subtitles are used when available.</li>
+    <li><b>Reasoning:</b> an LLM combines captions and transcript, infers the dish and cuisine, and writes a structured recipe and the dietary variant.</li>
+  </ol>
+</section>
+<section>
+  <h2>Screenshots</h2>
+  <figure class="figure"><img src="../images/recipe-1.jpg" alt="Frame captions and generated recipe" loading="lazy"><figcaption>Captions generated from the video's key frames, and the recipe built from captions plus transcript.</figcaption></figure>
+  <figure class="figure"><img src="../images/recipe-2.jpg" alt="Vegan variant of the recipe" loading="lazy"><figcaption>The same recipe adapted to a dietary preference (vegan).</figcaption></figure>
+</section>
+<section>
+  <h2>Stack</h2>
+  <p>Flask, Salesforce BLIP, OpenAI Whisper, GPT-4 Turbo, OpenCV, FFmpeg and yt-dlp, with a plain HTML and JavaScript front end.</p>
+</section>
+  </div>
+
+  <section>
+    <h2>More work</h2>
+    <div class="next-work"><a href="matritya.html"><small>Project</small>Matritya</a><a href="audit-before-you-update.html"><small>Preprint</small>Audit Before You Update</a><a href="bounded-update.html"><small>Manuscript</small>Bounded updates and explanation stability</a></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Fatema Tamanna · <a href="mailto:fatimatamannaah@gmail.com">fatimatamannaah@gmail.com</a></div>
+</footer>
+
+</body>
+</html>
