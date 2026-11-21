@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fatema Tamanna</title>
-<meta name="description" content="Fatema Tamanna: freelance AI engineer and ML/DL researcher working on deep learning for time series and sequential data, and on AI agents and LLM applications.">
+<meta name="description" content="Fatema Tamanna: freelance AI engineer and ML/DL researcher working on deep learning for time series and sequential data, trustworthy and explainable AI under data shift, and on AI agents and LLM applications.">
 <meta property="og:title" content="Fatema Tamanna">
 <meta property="og:description" content="Freelance AI engineer and ML/DL researcher: time series and sequential modelling, AI agents and LLM applications.">
 <meta property="og:image" content="https://empresst.github.io/images/avatar.jpg">
@@ -56,12 +56,12 @@
 
 <section id="research">
   <h2>Research</h2>
-  <p class="lead">My research is on deep learning for time series and sequential data: how sequence models such as LSTMs, GRUs, temporal convolutional networks and attention-based hybrids learn from data that unfolds over time, how to make their predictions more accurate, and how they behave when that data changes.</p>
-  <p>I have worked on hybrid ensembles for forecasting and load prediction, and on sequence models trained on hospital time series that have to cope with years of shifting data. As a freelance AI engineer, I also build production AI systems: real-time voice agents, retrieval-augmented LLM applications and computer-vision pipelines.</p>
+  <p class="lead">My research is on deep learning for time series and sequential data, and on keeping these models trustworthy when the data change: how sequence models such as LSTMs, GRUs, temporal convolutional networks and attention-based hybrids learn from data that unfolds over time, how to make their predictions more accurate, how to tell real shift in the data from artifacts of how it was recorded, and whether their explanations stay reliable after an update. The same questions arise wherever models learn from streams of sensor data, and I am interested in bringing these methods to wearable health monitoring, brain–computer interfaces (EEG), human–computer interaction, and sensor monitoring in power and nuclear systems.</p>
+  <p>I have worked on hybrid ensembles for forecasting and load prediction, and on sequence models trained on fifteen years of hospital time series (MIMIC-IV): auditing the data before a model update is evaluated (MIDI 2026), and measuring how reproducible a model's explanations are after it is updated (under review). As a freelance AI engineer, I also build production AI systems: real-time voice agents, retrieval-augmented LLM applications and computer-vision pipelines.</p>
   <div class="focus">
     <div><b>Time series forecasting</b>Hybrid deep learning ensembles (BiLSTM, BiGRU, TCN, attention, XGBoost) for forecasting and load prediction.</div>
-    <div><b>Sequence models under change</b>How recurrent and tree-based models behave, and how to update them, when sequential data drifts over time.</div>
-    <div><b>Explaining sequence models</b>Whether feature attributions (Integrated Gradients, SHAP) stay stable when a model is updated.</div>
+    <div><b>Real shift vs recording change</b>Auditing whether apparent drift in sequential data is real change or an artifact of the recording process, before a model update is evaluated.</div>
+    <div><b>Trustworthy explanations</b>Whether feature attributions (Integrated Gradients, SHAP) stay reproducible across seeds, learning rates and frozen layers when a model is updated.</div>
   </div>
 </section>
 
