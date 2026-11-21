@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bounded updates and explanation stability · Fatema Tamanna</title>
-<meta name="description" content="A bounded-update case study in intensive care on MIMIC-IV: freezing the physiology encoder and tracking how attributions and retrieved literature shift.">
-<meta property="og:title" content="Where does explanation movement go when part of a clinical model is frozen?">
-<meta property="og:description" content="A bounded-update case study in intensive care on MIMIC-IV: freezing the physiology encoder and tracking how attributions and retrieved literature shift.">
+<title>Beyond the Update Boundary · Fatema Tamanna</title>
+<meta name="description" content="Under review at AI4TS @ AAAI 2027: how reproducible a clinical time-series model's explanations are after an update, across update boundaries, learning rates and seeds.">
+<meta property="og:title" content="Beyond the Update Boundary: Explanation Reproducibility in Clinical Time-Series Models">
+<meta property="og:description" content="Under review at AI4TS @ AAAI 2027: how reproducible a clinical time-series model's explanations are after an update, across update boundaries, learning rates and seeds.">
 <link rel="icon" href="../favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,40 +30,36 @@
 <main class="wrap">
   <div class="page-head">
     <a class="back" href="../index.html#publications">All work</a>
-    <div class="kicker">Manuscript</div>
-    <h1>Where does explanation movement go when part of a clinical model is frozen?</h1>
-    <div class="authors">A bounded-update case study in intensive care using MIMIC-IV</div>
-    <div class="tags"><span>Explainability</span><span>Integrated Gradients</span><span>Retrieval</span><span>MIMIC-IV</span><span>PyTorch</span></div>
-    <div class="links"><a class="btn primary" href="https://github.com/empresst/bounded_update">Code</a></div>
+    <div class="kicker">Under review · AI4TS Workshop @ AAAI 2027</div>
+    <h1>Beyond the Update Boundary: Explanation Reproducibility in Clinical Time-Series Models</h1>
+    <div class="authors"><b>Fatema Ferdous Tamanna</b>, K. M. Merajul Arefin, Md. Abdul Masud</div>
+    <div class="tags"><span>Time series</span><span>Explainability</span><span>Integrated Gradients</span><span>TreeSHAP</span><span>LSTM</span><span>MIMIC-IV</span></div>
   </div>
 
   <div class="article">
 
 <section>
   <h2>The question</h2>
-  <p class="lead">When a clinical model is updated, clinicians who learned to trust its explanations need to know whether those explanations still mean the same thing. A common safeguard is a <i>bounded</i> update: freeze part of the model and retrain the rest. Does freezing actually keep the explanations stable, or does the change just move somewhere else?</p>
+  <p class="lead">Time-series models have to be updated as their data drift, and regulators ask developers to declare in advance how an update will be made. One attractive declaration is an <i>update boundary</i>: keep the encoder of the physiological time series fixed and retrain only the rest. A frozen encoder keeps the representation of a patient's physiology unchanged, but does it keep the model's explanations unchanged?</p>
+  <p>Explanations should change where the data have changed. Change that depends only on the random seed is arbitrary, so this paper measures how much of the explanation change after an update is reproducible across seeds, and how that depends on the learning rate and the update boundary.</p>
 </section>
 <section>
   <h2>Setup</h2>
   <ul>
-    <li>A two-stream ICU model: an LSTM encoder over physiology, an MLP over treatment context, and a fusion head. Trained on MIMIC-IV 2008–2013.</li>
-    <li>Drift is detected in 2020–2022, and the model is adapted two ways: <b>Run B</b> leaves the physiology encoder out of the optimiser; <b>Run C</b> lets every layer update.</li>
-    <li>Both are compared to the source model on Integrated Gradients attributions, and on PubMed abstracts retrieved using each patient's top attributed features.</li>
+    <li><b>Data:</b> the audited MIMIC-IV 3.1 cohort from our <a href="../index.html#publications">MIDI 2026 paper</a>. Source era 2008–2013; the model is updated sequentially at the start of 2014–2016, 2017–2019 and 2020–2022. Targets: vasopressor use and invasive ventilation.</li>
+    <li><b>Model:</b> a two-stream network: a 2-layer LSTM over 51 hourly physiological channels, an MLP over 49 treatment-context features, and a nonlinear fusion head. As a contrast, a modular tree model with separate XGBoost boosters per stream and a logistic-regression fusion head.</li>
+    <li><b>Update arms:</b> a <b>bounded</b> update that retrains only the treatment encoder and fusion head (the LSTM's weights are verified to be identical after every update), and a <b>full</b> update that retrains everything.</li>
+    <li><b>Factorial design:</b> both arms at four learning rates spanning a 30-fold range, five seeds each.</li>
+    <li><b>Measures:</b> Integrated Gradients (neural) and TreeSHAP (trees) attributions per stream; agreement with the source model and agreement between two seeds of the same update (Spearman correlation, top-5 overlap), also resolved over the hours of the observation window.</li>
   </ul>
 </section>
 <section>
-  <h2>Results</h2>
-  <figure class="figure"><img src="../images/bounded-relocation.jpg" alt="Attribution similarity, retrieval overlap and weight change for bounded and unconstrained updates" loading="lazy"><figcaption>(a) Attribution similarity to the source model, (b) overlap of attribution-conditioned literature retrieval with the source, (c) relative weight change per component.</figcaption></figure>
+  <h2>What I found</h2>
   <ul>
-    <li><b>Attributions stay closer under the bounded update</b> on every measure, for example Spearman correlation 0.875 vs 0.812 and top-5 feature overlap 0.674 vs 0.552.</li>
-    <li><b>Retrieval is mixed:</b> physiology-side retrieval stays closer to the source under B (Jaccard 0.614 vs 0.517), but treatment-side retrieval stays closer under C (0.500 vs 0.555).</li>
-    <li><b>The change relocates.</b> With the encoder frozen, its weights do not move at all, while the treatment stream and fusion head change more than in the full update (0.212 vs 0.143 and 0.317 vs 0.198).</li>
+    <li>In the neural model, freezing the encoder did not keep its explanations stable, even though the encoder's weights stayed identical.</li>
+    <li>On average, the learning rate moved explanations more than the choice of which layers to freeze.</li>
   </ul>
-  <p>So freezing protects the part you freeze, but the adaptation pressure moves into the trainable parts, and explanations tied to those parts can shift more, not less.</p>
-</section>
-<section>
-  <h2>Robustness checks</h2>
-  <p>The repository includes a five-seed replication, a seed-to-seed noise floor for the attribution measures, a broader 2009–2019 PubMed corpus (3,668 abstracts) for the retrieval check, faithfulness checks on the attributions, and patient-specific grounding of the retrieved evidence. No patient-level data is published.</p>
+  <p>The paper is under anonymous review, so it is not posted here yet.</p>
 </section>
   </div>
 
