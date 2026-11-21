@@ -56,12 +56,13 @@
 
 <section id="research">
   <h2>Research</h2>
-  <p class="lead">My research is on deep learning for time series and sequential data, and on keeping these models trustworthy when the data change: how sequence models such as LSTMs, GRUs, temporal convolutional networks and attention-based hybrids learn from data that unfolds over time, how to make their predictions more accurate, how to tell real shift in the data from artifacts of how it was recorded, and whether their explanations stay reliable after an update. The same questions arise wherever models learn from streams of sensor data, and I am interested in bringing these methods to wearable health monitoring, brain–computer interfaces (EEG), human–computer interaction, and sensor monitoring in power and nuclear systems.</p>
-  <p>I have worked on hybrid ensembles for forecasting and load prediction, and on sequence models trained on fifteen years of hospital time series (MIMIC-IV): auditing the data before a model update is evaluated (MIDI 2026), and measuring how reproducible a model's explanations are after it is updated (under review). As a freelance AI engineer, I also build production AI systems: real-time voice agents, retrieval-augmented LLM applications and computer-vision pipelines.</p>
+  <p class="lead">My research is on deep learning for time series and sequential data, and on keeping these models trustworthy when the data change: how sequence models such as LSTMs, GRUs, temporal convolutional networks and attention-based hybrids learn from data that unfolds over time, how to make their predictions more accurate, how to tell real shift in the data from artifacts of how it was recorded, and whether their explanations stay reliable after an update. The same questions arise wherever models learn from streams of data: in wearable health monitoring, brain–computer interfaces (EEG), human–computer interaction, sensor monitoring in power and nuclear systems, and language-model systems, where a model's explanations and outputs need to be checked against independent evidence that may itself go out of date. More broadly, I welcome related problems in machine learning, time series and trustworthy AI.</p>
+  <p>I have worked on hybrid ensembles for forecasting and load prediction, and on sequence models trained on fifteen years of hospital time series (MIMIC-IV): auditing the data before a model update is evaluated (MIDI 2026), and measuring how reproducible a model's explanations are after it is updated (under review). In industry, I also build production AI systems: real-time voice agents, retrieval-augmented LLM applications and computer-vision pipelines.</p>
   <div class="focus">
     <div><b>Time series forecasting</b>Hybrid deep learning ensembles (BiLSTM, BiGRU, TCN, attention, XGBoost) for forecasting and load prediction.</div>
     <div><b>Real shift vs recording change</b>Auditing whether apparent drift in sequential data is real change or an artifact of the recording process, before a model update is evaluated.</div>
     <div><b>Trustworthy explanations</b>Whether feature attributions (Integrated Gradients, SHAP) stay reproducible across seeds, learning rates and frozen layers when a model is updated.</div>
+    <div><b>Checking explanations against evidence</b>Treating a model's explanation as a claim to test against independent evidence, and tracking whether that evidence stays valid as sources change.</div>
   </div>
 </section>
 
@@ -164,10 +165,14 @@
 </section>
 
 <section id="background">
-  <h2>Education and recognition</h2>
+  <h2>Experience and education</h2>
   <div class="timeline">
-    <div><span>2019 – 2024</span><p><b>BSc in Computer Science and Engineering</b><br>Patuakhali Science and Technology University, Bangladesh</p></div>
-    <div><span>2023 – 2024</span><p><b>Research Assistant</b>, Patuakhali Science and Technology University<br>Hybrid deep learning models for time series forecasting, leading to the ICISET 2024 and STI 2024 papers.</p></div>
+    <div><span>2025 – present</span><p><b>Independent research</b>, with my undergraduate co-authors<br>Data auditing and model updating under temporal shift, leading to the MIDI 2026 paper and the AI4TS submission.</p></div>
+    <div><span>2025</span><p><b>AI Developer</b>, BDCallingIT<br>Production ReAct-based RAG pipelines, computer-vision APIs and voice agents.</p></div>
+    <div><span>2024 – present</span><p><b>Freelance AI Engineer</b>, Outlier AI<br>Reference solutions and adversarial prompts for LLM code generation; ranking model outputs for technical accuracy.</p></div>
+    <div><span>2019 – 2025</span><p><b>BSc in Computer Science and Engineering</b><br>Patuakhali Science and Technology University, Bangladesh</p></div>
+    <div><span>2023 – 2024</span><p><b>Undergraduate Researcher</b>, Patuakhali Science and Technology University<br>Hybrid deep learning models for time series forecasting, leading to the ICISET 2024 and STI 2024 papers.</p></div>
+    <div><span>Undergraduate</span><p><b>Ankur Undergraduate Scholarship</b>, Ankur International</p></div>
     <div><span>2023</span><p><b>Champion</b>, Barisal Divisional Hackathon (Hackverse)</p></div>
     <div><span>2022</span><p><b>9th place</b>, Mujib Borsho IT Carnival</p></div>
   </div>

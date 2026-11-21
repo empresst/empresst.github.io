@@ -70,7 +70,7 @@ p { margin: 0 0 12px; }
 .lead { font-size: 17px; }
 .note { font-size: 14px; color: var(--muted); margin-top: 12px; }
 
-.focus { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+.focus { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 18px; }
 .focus div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; font-size: 14px; color: var(--muted); }
 .focus b { display: block; color: var(--text); font-size: 15px; margin-bottom: 4px; }
 
